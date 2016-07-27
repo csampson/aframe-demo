@@ -1,7 +1,9 @@
 {
   "private": true,
   "name": "vr-data-viz",
-  "main": "app.js",
+  "scripts": {
+    "start": "webpack-dev-server --config config/webpack.js --hot --progress"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/csampson/vr-data-viz.git"
@@ -14,5 +16,21 @@
     "eslint-plugin-import": "^1.12.0",
     "eslint-plugin-jsx-a11y": "^1.5.5",
     "eslint-plugin-react": "^5.2.2"
+  },
+  "dependencies": {
+    "aframe": "^0.2.0",
+    "babel-core": "^6.11.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "css-loader": "^0.23.1",
+    "d3": "^4.1.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "html-loader": "^0.4.3",
+    "html-webpack-plugin": "^2.22.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
   }
 }
