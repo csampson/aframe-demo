@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "vr-data-viz",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csampson/vr-data-viz.git"
+  },
+  "url": "https://github.com/csampson/vr-data-viz/issues",
+  "homepage": "https://github.com/csampson/vr-data-viz#readme",
+  "devDependencies": {
+    "eslint": "^2.13.1",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.12.0",
+    "eslint-plugin-jsx-a11y": "^1.5.5",
+    "eslint-plugin-react": "^5.2.2"
+  }
+}
