@@ -6,7 +6,7 @@ require('aframe');
 require('./index.css');
 
 const SUN_DIAMETER = 20;
-const SCALE_FACTOR = 10;
+const SCALE_FACTOR = 1;
 const TIME_FACTOR  = 250;
 
 const bodies = [
@@ -30,7 +30,7 @@ const bodies = [
     name: 'Venus',
     texture: '#texture-venus',
     diameter: 0.95,
-    distance: 0.723 * SCALE_FACTOR + SUN_DIAMETER,
+    distance: 0.723 * SCALE_FACTOR + SUN_DIAMETER + 20,
     rotation: 2784 * TIME_FACTOR,
     revolution: 225 * TIME_FACTOR
   },
@@ -38,7 +38,7 @@ const bodies = [
     name: 'Earth',
     texture: '#texture-earth',
     diameter: 1,
-    distance: 1 * SCALE_FACTOR + SUN_DIAMETER,
+    distance: 1 * SCALE_FACTOR + SUN_DIAMETER + 20,
     rotation: 24 * TIME_FACTOR,
     revolution: 365 * TIME_FACTOR
   },
@@ -46,7 +46,7 @@ const bodies = [
     name: 'Mars',
     texture: '#texture-mars',
     diameter: 0.53,
-    distance: 1.524 * SCALE_FACTOR + SUN_DIAMETER,
+    distance: 1.524 * SCALE_FACTOR + SUN_DIAMETER + 20,
     rotation: 24 * TIME_FACTOR,
     revolution: 687 * TIME_FACTOR
   }
@@ -82,4 +82,3 @@ orbits.data(bodies)
       .attr('to', '0 360 0')
       .attr('easing', 'linear')
       .attr('repeat', 'indefinite');
-
