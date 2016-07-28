@@ -5,8 +5,8 @@ const d3 = require('d3');
 require('aframe');
 require('./index.css');
 
-const SUN_DIAMETER = 20;
-const SCALE_FACTOR = 1;
+const SUN_DIAMETER = 119;
+const SCALE_FACTOR = 30;
 const TIME_FACTOR  = 250;
 
 const bodies = [
@@ -22,7 +22,7 @@ const bodies = [
     name: 'Mercury',
     texture: '#texture-mercury',
     diameter: 0.382,
-    distance: 0.387 * SCALE_FACTOR + SUN_DIAMETER,
+    distance: SUN_DIAMETER + 0.191 + 0.387  + SCALE_FACTOR,
     rotation: 1392 * TIME_FACTOR,
     revolution: 88 * TIME_FACTOR
   },
@@ -30,7 +30,7 @@ const bodies = [
     name: 'Venus',
     texture: '#texture-venus',
     diameter: 0.95,
-    distance: 0.723 * SCALE_FACTOR + SUN_DIAMETER + 20,
+    distance: SUN_DIAMETER + 0.475 + 0.723 + SCALE_FACTOR,
     rotation: 2784 * TIME_FACTOR,
     revolution: 225 * TIME_FACTOR
   },
@@ -38,7 +38,7 @@ const bodies = [
     name: 'Earth',
     texture: '#texture-earth',
     diameter: 1,
-    distance: 1 * SCALE_FACTOR + SUN_DIAMETER + 20,
+    distance: SUN_DIAMETER + 0.5 + 1 * SCALE_FACTOR,
     rotation: 24 * TIME_FACTOR,
     revolution: 365 * TIME_FACTOR
   },
@@ -46,9 +46,25 @@ const bodies = [
     name: 'Mars',
     texture: '#texture-mars',
     diameter: 0.53,
-    distance: 1.524 * SCALE_FACTOR + SUN_DIAMETER + 20,
+    distance: SUN_DIAMETER + 1.524 + 0.265 * SCALE_FACTOR,
     rotation: 24 * TIME_FACTOR,
     revolution: 687 * TIME_FACTOR
+  },
+  {
+    name: 'Jupiter',
+    texture: '#texture-jupiter',
+    diameter: 11.19,
+    distance: SUN_DIAMETER + 5.595 + 4.86 * SCALE_FACTOR,
+    rotation: 9 * TIME_FACTOR,
+    revolution: 4380 * TIME_FACTOR
+  },
+  {
+    name: 'Saturn',
+    texture: '#texture-saturn',
+    diameter: 9.40,
+    distance: SUN_DIAMETER + 4.7 + 9.6 * SCALE_FACTOR,
+    rotation: 10 * TIME_FACTOR,
+    revolution: 10585 * TIME_FACTOR
   }
 ];
 
