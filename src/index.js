@@ -5,49 +5,81 @@ const d3 = require('d3');
 require('aframe');
 require('./index.css');
 
-const SCALE_FACTOR = 20;
+const SUN_DIAMETER = 20;
+const SCALE_FACTOR = 10;
+const TIME_FACTOR  = 250;
 
 const bodies = [
-  // {
-  //   name: 'Sun',
-  //   texture: '#texture-sun',
-  //   diameter: 1392e3 / SCALE_FACTOR,
-  //   distance: 0
-  // },
+  {
+    name: 'Sun',
+    texture: '#texture-sun',
+    diameter: SUN_DIAMETER,
+    distance: 0,
+    rotation: 587.28 * TIME_FACTOR,
+    revolution: 0
+  },
   {
     name: 'Mercury',
     texture: '#texture-mercury',
-    diameter: 4879 / 1e4,
-    distance: 0.39 * SCALE_FACTOR
+    diameter: 0.382,
+    distance: 0.387 * SCALE_FACTOR + SUN_DIAMETER,
+    rotation: 1392 * TIME_FACTOR,
+    revolution: 88 * TIME_FACTOR
   },
   {
     name: 'Venus',
     texture: '#texture-venus',
-    diameter: 12104 / 1e4,
-    distance: 0.723 * SCALE_FACTOR
+    diameter: 0.95,
+    distance: 0.723 * SCALE_FACTOR + SUN_DIAMETER,
+    rotation: 2784 * TIME_FACTOR,
+    revolution: 225 * TIME_FACTOR
   },
   {
     name: 'Earth',
     texture: '#texture-earth',
-    diameter: 12756 / 1e4,
-    distance: 1 * SCALE_FACTOR
+    diameter: 1,
+    distance: 1 * SCALE_FACTOR + SUN_DIAMETER,
+    rotation: 24 * TIME_FACTOR,
+    revolution: 365 * TIME_FACTOR
   },
   {
     name: 'Mars',
     texture: '#texture-mars',
-    diameter: 6794 / 1e4,
-    distance: 1.524 * SCALE_FACTOR
+    diameter: 0.53,
+    distance: 1.524 * SCALE_FACTOR + SUN_DIAMETER,
+    rotation: 24 * TIME_FACTOR,
+    revolution: 687 * TIME_FACTOR
   }
 ];
 
-document.addEventListener('DOMContentLoaded', event => {
-  const spheres = d3.select('.space').selectAll('a-sphere');
+const orbits = d3.select('.bodies').selectAll('a-entity');
 
-  spheres.data(bodies)
-    .enter()
-    .append('a-sphere')
-    .attr('id', body => body.name)
-    .attr('material', body => `src: ${body.texture}`)
-    .attr('position', body => `${body.distance} 0 -1`)
-    .attr('scale', body => `${body.diameter} ${body.diameter} ${body.diameter}`);
-});
+// Apply orbital periods
+orbits.data(bodies)
+  .enter()
+  .append('a-entity')
+    .append('a-animation')
+      .attr('attribute', 'rotation')
+      .attr('dur', body => body.revolution)
+      .attr('fill', 'forwards')
+      .attr('to', '0 360 0')
+      .attr('easing', 'linear')
+      .attr('repeat', 'indefinite');
+
+// Apply textures, distances from sun, rotational periods
+orbits.data(bodies)
+  .enter()
+  .selectAll('a-entity')
+  .append('a-sphere')
+  .attr('id', body => body.name)
+  .attr('material', body => `src: ${body.texture}`)
+  .attr('position', body => `${body.distance} 0 -1`)
+  .attr('scale', body => `${body.diameter} ${body.diameter} ${body.diameter}`)
+    .append('a-animation')
+      .attr('attribute', 'rotation')
+      .attr('dur', body => body.rotation)
+      .attr('fill', 'forwards')
+      .attr('to', '0 360 0')
+      .attr('easing', 'linear')
+      .attr('repeat', 'indefinite');
+
