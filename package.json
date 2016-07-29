@@ -2,7 +2,7 @@
   "private": true,
   "name": "vr-data-viz",
   "scripts": {
-    "start": "webpack-dev-server --config config/webpack.js --hot --progress --inline --host 0.0.0.0 --port 1337"
+    "start": "webpack-dev-server --config config/webpack.js --progress"
   },
   "repository": {
     "type": "git",
