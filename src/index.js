@@ -5,9 +5,10 @@ const d3 = require('d3');
 require('aframe');
 require('./index.css');
 
-const SUN_DIAMETER = 119;
+const SUN_DIAMETER = 50;
 const SCALE_FACTOR = 30;
 const TIME_FACTOR  = 250;
+const REVOLUTION_DIVISOR = 5;
 
 const bodies = [
   {
@@ -24,7 +25,7 @@ const bodies = [
     diameter: 0.382,
     distance: SUN_DIAMETER + 0.191 + 0.387  + SCALE_FACTOR,
     rotation: 1392 * TIME_FACTOR,
-    revolution: 88 * TIME_FACTOR
+    revolution: 88 * TIME_FACTOR / REVOLUTION_DIVISOR
   },
   {
     name: 'Venus',
@@ -32,7 +33,7 @@ const bodies = [
     diameter: 0.95,
     distance: SUN_DIAMETER + 0.475 + 0.723 + SCALE_FACTOR,
     rotation: 2784 * TIME_FACTOR,
-    revolution: 225 * TIME_FACTOR
+    revolution: 225 * TIME_FACTOR / REVOLUTION_DIVISOR
   },
   {
     name: 'Earth',
@@ -40,7 +41,7 @@ const bodies = [
     diameter: 1,
     distance: SUN_DIAMETER + 0.5 + 1 * SCALE_FACTOR,
     rotation: 24 * TIME_FACTOR,
-    revolution: 365 * TIME_FACTOR
+    revolution: 365 * TIME_FACTOR / REVOLUTION_DIVISOR
   },
   {
     name: 'Mars',
@@ -48,7 +49,7 @@ const bodies = [
     diameter: 0.53,
     distance: SUN_DIAMETER + 1.524 + 0.265 * SCALE_FACTOR,
     rotation: 24 * TIME_FACTOR,
-    revolution: 687 * TIME_FACTOR
+    revolution: 687 * TIME_FACTOR / REVOLUTION_DIVISOR
   },
   {
     name: 'Jupiter',
@@ -56,7 +57,7 @@ const bodies = [
     diameter: 11.19,
     distance: SUN_DIAMETER + 5.595 + 4.86 * SCALE_FACTOR,
     rotation: 9 * TIME_FACTOR,
-    revolution: 4380 * TIME_FACTOR
+    revolution: 4380 * TIME_FACTOR / REVOLUTION_DIVISOR
   },
   {
     name: 'Saturn',
@@ -64,7 +65,23 @@ const bodies = [
     diameter: 9.40,
     distance: SUN_DIAMETER + 4.7 + 9.6 * SCALE_FACTOR,
     rotation: 10 * TIME_FACTOR,
-    revolution: 10585 * TIME_FACTOR
+    revolution: 10585 * TIME_FACTOR / REVOLUTION_DIVISOR
+  },
+  {
+    name: 'Uranus',
+    texture: '#texture-uranus',
+    diameter: 4.04,
+    distance: SUN_DIAMETER + 2.02 + 19.2 * SCALE_FACTOR,
+    rotation: 10 * TIME_FACTOR,
+    revolution: 30576 * TIME_FACTOR / REVOLUTION_DIVISOR
+  },
+  {
+    name: 'Neptune',
+    texture: '#texture-neptune',
+    diameter: 3.88,
+    distance: SUN_DIAMETER + 1.94 + 30.1 * SCALE_FACTOR,
+    rotation: 10 * TIME_FACTOR,
+    revolution: 60225 * TIME_FACTOR / REVOLUTION_DIVISOR
   }
 ];
 
