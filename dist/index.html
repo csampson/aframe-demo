@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang='en-US'>
+<head>
+  <meta charset='utf-8' />
+  <title>VR Data Viz Demo</title>
+  <script src='/vendor.bundle.js'></script>
+</head>
+<body>
+  <a-scene class='space'>
+    <a-assets>
+      <img id='texture-stars' src='00d0c5edc91bb97f703366b355650f3e.png' alt='' />
+      <img id='texture-sun' src='eac96f8a2bcb297d2a08559a9c47f14f.png' alt='' />
+      <img id='texture-mercury' src='3a95b9218d50192d7be83add30e7f489.jpg' alt='' />
+      <img id='texture-venus' src='7d33bca4b4f904393a33c1d2f5ad9d69.jpg' alt='' />
+      <img id='texture-earth' src='49c3b412cfa448ec819412fb3ca089d2.jpg' alt='' />
+      <img id='texture-mars' src='302f8ac7d42735a46d980d561567b26d.jpg' alt='' />
+      <img id='texture-jupiter' src='f69754cbb9d0129d83e3a6b0a2a91df3.jpg' alt='' />
+      <img id='texture-uranus' src='babc9f201c35a1161b83041d20c688ab.jpg' alt='' />
+      <img id='texture-neptune' src='e77dd5920df878a66ba99c64ab136c42.jpg' alt='' />      
+    </a-assets>
+
+    <a-entity class='bodies' position='0 0.5 0'></a-entity>
+
+    <a-sky material='src: #texture-stars'></a-sky>
+    <a-camera position='14 40 137' look-controls wasd-controls='acceleration: 500, fly: true'></a-camera>
+  </a-scene>
+
+  <script src='/bundle.js'></script>
+</body>
+</html>
