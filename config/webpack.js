@@ -2,7 +2,6 @@
 
 const CommonsChunkPlugin = require('webpack').optimize.CommonsChunkPlugin;
 const ExtractTextPlugin  = require('extract-text-webpack-plugin');
-const HtmlWebpackPlugin  = require('html-webpack-plugin');
 
 module.exports = {
   debug: true,
@@ -16,31 +15,30 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loaders: ['babel']
-      },
-      {
-        test: /\.html$/,
-        loader: 'html-loader'
+        loaders: ['babel'],
+        publicPath: '/js'
       },
       {
         test: /\.(png|jpg)$/,
-        loader: 'file-loader'
+        loader: 'file-loader?name=images/[name].[hash].[ext]&limit=1000'
       },
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
       },
+      {
+        test: /\.js$/,
+        loader: 'html'
+      }
     ]
   },
   output: {
-    filename: 'bundle.js'
+    path: `${__dirname}/../public`,
+    publicPath: '/public',
+    filename: 'js/bundle-[hash].js'
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: `${__dirname}/../src/index.html`,
-      inject: false
-    }),
     new ExtractTextPlugin('index.css'),
-    new CommonsChunkPlugin('vendor', 'vendor.bundle.js')
+    new CommonsChunkPlugin('vendor', 'js/vendor.bundle-[hash].js')
   ],
 };

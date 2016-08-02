@@ -1,9 +1,14 @@
 'use strict';
 
-const d3 = require('d3');
+const d3       = require('d3');
+const React    = require('react');
+const ReactDOM = require('react-dom');
 
 require('aframe');
 require('./index.css');
+
+const Scene  = require('aframe-react').Scene;
+const Entity = require('aframe-react').Entity;
 
 const SUN_DIAMETER = 50;
 const SCALE_FACTOR = 30;
@@ -85,33 +90,67 @@ const bodies = [
   }
 ];
 
-const orbits = d3.select('.bodies').selectAll('a-entity');
+class Sol extends React.Component {
+  componentDidMount() {
+    const orbits = d3.select('.bodies').selectAll('a-entity');
 
-// Apply orbital periods
-orbits.data(bodies)
-  .enter()
-  .append('a-entity')
-    .append('a-animation')
-      .attr('attribute', 'rotation')
-      .attr('dur', body => body.revolution)
-      .attr('fill', 'forwards')
-      .attr('to', '0 360 0')
-      .attr('easing', 'linear')
-      .attr('repeat', 'indefinite');
+    // Apply orbital periods
+    orbits.data(bodies)
+      .enter()
+      .append('a-entity')
+        .append('a-animation')
+          .attr('attribute', 'rotation')
+          .attr('dur', body => body.revolution)
+          .attr('fill', 'forwards')
+          .attr('to', '0 360 0')
+          .attr('easing', 'linear')
+          .attr('repeat', 'indefinite');
 
-// Apply textures, distances from sun, rotational periods
-orbits.data(bodies)
-  .enter()
-  .selectAll('a-entity')
-  .append('a-sphere')
-  .attr('id', body => body.name)
-  .attr('material', body => `src: ${body.texture}`)
-  .attr('position', body => `${body.distance} 0 -1`)
-  .attr('scale', body => `${body.diameter} ${body.diameter} ${body.diameter}`)
-    .append('a-animation')
-      .attr('attribute', 'rotation')
-      .attr('dur', body => body.rotation)
-      .attr('fill', 'forwards')
-      .attr('to', '0 360 0')
-      .attr('easing', 'linear')
-      .attr('repeat', 'indefinite');
+    // Apply textures, distances from sun, rotational periods
+    orbits.data(bodies)
+      .enter()
+      .selectAll('a-entity')
+      .append('a-sphere')
+      .attr('id', body => body.name)
+      .attr('material', body => `src: ${body.texture}`)
+      .attr('position', body => `${body.distance} 0 -1`)
+      .attr('scale', body => `${body.diameter} ${body.diameter} ${body.diameter}`)
+        .append('a-animation')
+          .attr('attribute', 'rotation')
+          .attr('dur', body => body.rotation)
+          .attr('fill', 'forwards')
+          .attr('to', '0 360 0')
+          .attr('easing', 'linear')
+          .attr('repeat', 'indefinite');
+  }
+
+  render() {
+    return (
+      <Scene className='space'>
+        <Entity assets>
+          <img id='texture-stars' src='./images/stars.png' alt='' />
+          <img id='texture-sun' src='./images/texture-sun.png' alt='' />
+          <img id='texture-mercury' src='./images/texture-mercury.jpg' alt='' />
+          <img id='texture-venus' src='./images/texture-venus.jpg' alt='' />
+          <img id='texture-earth' src='./images/texture-earth.jpg' alt='' />
+          <img id='texture-mars' src='./images/texture-mars.jpg' alt='' />
+          <img id='texture-jupiter' src='./images/texture-jupiter.jpg' alt='' />
+          <img id='texture-uranus' src='./images/texture-uranus.jpg' alt='' />
+          <img id='texture-neptune' src='./images/texture-neptune.jpg' alt='' />
+        </Entity>
+
+        <Entity className='bodies' position='0 0.5 0' />
+
+        <Entity sky material='src: #texture-stars' />
+        <Entity camera position='14 40 137' look-controls wasd-controls='acceleration: 500, fly: true' />
+      </Scene>
+    );
+  }
+}
+
+const root = document.body.appendChild(document.createElement('div'));
+
+ReactDOM.render(
+  <Sol />,
+  root
+);
